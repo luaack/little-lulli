@@ -14,6 +14,14 @@ export function Navbar() {
           <a
             key={item.label}
             href={item.href}
+            onClick={(e) => {
+              e.preventDefault();
+              const targetId = item.href.replace("#", "");
+              const element = document.getElementById(targetId);
+              if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             className="text-[10px] transition-colors sm:text-xs md:text-sm tracking-wide font-medium"
             style={{ color: "rgba(245, 208, 218, 0.75)" }}
             onMouseEnter={(e) =>
