@@ -219,7 +219,7 @@ const PrismaHero = () => {
               >
                 {/* WhatsApp CTA */}
                 <a
-                  href="https://wa.me/5500000000000"
+                  href="https://wa.me/5561991557493"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 self-start rounded-full py-1 pl-4 pr-1 text-sm font-medium transition-all hover:gap-3 sm:text-base"
@@ -236,7 +236,7 @@ const PrismaHero = () => {
 
                 {/* Instagram CTA */}
                 <a
-                  href="https://instagram.com/littlelulli"
+                  href="https://www.instagram.com/uselittlelulli"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 self-start rounded-full border py-1 pl-4 pr-1 text-sm font-medium transition-all hover:gap-3 sm:text-base"
