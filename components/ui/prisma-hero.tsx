@@ -106,12 +106,7 @@ export const WordsPullUpMultiStyle = ({
   );
 };
 
-/* ---------------- Nav Items ---------------- */
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Depoimentos", href: "#depoimentos" },
-  { label: "Contato", href: "#contato" },
-];
+
 
 /* ---------------- Hero ---------------- */
 const PrismaHero = () => {
@@ -154,27 +149,7 @@ const PrismaHero = () => {
           aria-hidden="true"
         />
 
-        {/* Navbar */}
-        <nav className="fixed left-1/2 top-0 z-50 -translate-x-1/2">
-          <div className="flex items-center gap-4 rounded-b-2xl bg-black/80 backdrop-blur-sm px-6 py-2 sm:gap-8 md:gap-10 md:rounded-b-3xl md:px-10 lg:gap-12">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-[10px] transition-colors sm:text-xs md:text-sm tracking-wide"
-                style={{ color: "rgba(245, 208, 218, 0.75)" }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = "#f5d0da")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(245, 208, 218, 0.75)")
-                }
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-        </nav>
+
 
         {/* Hero content */}
         <div className="absolute bottom-0 left-0 right-0 px-4 pb-2 sm:px-6 md:px-10">
