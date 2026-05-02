@@ -108,7 +108,7 @@ export const WordsPullUpMultiStyle = ({
 
 /* ---------------- Nav Items ---------------- */
 const navItems = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: "#home" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Contato", href: "#contato" },
 ];
@@ -116,7 +116,7 @@ const navItems = [
 /* ---------------- Hero ---------------- */
 const PrismaHero = () => {
   return (
-    <section className="relative z-20 h-screen w-full">
+    <section id="home" className="relative z-20 h-screen w-full">
       <div className="relative h-full w-full overflow-hidden rounded-2xl md:rounded-[2rem]">
         {/* Background video */}
         <video

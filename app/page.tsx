@@ -1,6 +1,7 @@
 import { PrismaHero } from "@/components/ui/prisma-hero";
 import { TestimonialsSection } from "@/components/testimonials-section";
 import { VelocityText } from "@/components/ui/parallax-scrolling-text-effect";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <PrismaHero />
       <VelocityText />
       <TestimonialsSection />
+      <Footer />
     </main>
   );
 }
