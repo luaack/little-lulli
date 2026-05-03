@@ -10,25 +10,25 @@ import {
 
 const items = [
   {
-    img: "/colecao-1.jpg",
+    img: "/colecao-1.jpeg",
     title: 'Jardim Encantado',
     desc: 'Laços bordados à mão com delicadeza e cores que celebram a natureza.',
     sliderName: 'jardim',
   },
   {
-    img: "/colecao-2.jpg",
+    img: "/colecao-2.jpeg",
     title: 'Laços de Flor',
     desc: 'Prendedores delicados com detalhes florais para iluminar qualquer penteado.',
     sliderName: 'flores',
   },
   {
-    img: "/colecao-3.jpg",
+    img: "/colecao-3.jpeg",
     title: 'Amigos da Floresta',
     desc: 'Bordados lúdicos de bichinhos que trazem diversão e estilo para as pequenas.',
     sliderName: 'raposa',
   },
   {
-    img: "/colecao-4.jpg",
+    img: "/colecao-4.jpeg",
     title: 'Momentos Lulli',
     desc: 'O sorriso de quem usa o carinho e o cuidado em forma de laço.',
     sliderName: 'momentos',
