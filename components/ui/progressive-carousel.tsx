@@ -88,8 +88,8 @@ export const ProgressSlider: FC<ProgressSliderProps> = ({
     ) as React.ReactElement | undefined;
 
     if (getChildren) {
-      const values = React.Children.toArray(getChildren.props.children).map(
-        (child) => (child as React.ReactElement).props.value as string
+      const values = React.Children.toArray((getChildren as any).props.children).map(
+        (child) => (child as any).props.value as string
       );
       setSliderValues(values);
     }
