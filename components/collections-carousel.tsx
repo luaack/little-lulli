@@ -53,40 +53,25 @@ export function CollectionsCarousel() {
           </p>
         </div>
 
-        <div className="max-w-5xl mx-auto relative">
-          <ProgressSlider vertical={false} activeSlider='jardim'>
+        <div className="max-w-5xl mx-auto relative group">
+          <ProgressSlider vertical={false} activeSlider='jardim' duration={4000}>
             <SliderContent>
               {items.map((item, index) => (
                 <SliderWrapper key={index} value={item.sliderName}>
                   <Image
-                    className='rounded-2xl md:rounded-[2rem] h-[500px] md:h-[600px] w-full object-cover shadow-2xl'
+                    className='rounded-2xl md:rounded-[2rem] h-[500px] md:h-[700px] w-full object-cover shadow-2xl'
                     src={item.img}
                     width={1900}
                     height={1080}
                     alt={item.title}
+                    priority={index === 0}
                   />
                 </SliderWrapper>
               ))}
             </SliderContent>
-
-            <SliderBtnGroup className='absolute bottom-4 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] text-black bg-white/75 backdrop-blur-xl overflow-hidden grid grid-cols-2 md:grid-cols-4 rounded-xl md:rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/40'>
-              {items.map((item, index) => (
-                <SliderBtn
-                  key={index}
-                  value={item.sliderName}
-                  className='text-left cursor-pointer p-3 md:p-5 border-r border-black/5 last:border-r-0 hover:bg-white/40 transition-colors'
-                  progressBarClass='bg-primary/20 h-full'
-                >
-                  <h3 className='relative px-3 py-1 rounded-full w-fit bg-primary text-primary-foreground mb-2 text-[10px] md:text-xs font-bold tracking-wider uppercase'>
-                    {item.title}
-                  </h3>
-                  <p className='text-xs md:text-sm font-medium line-clamp-2 text-black/80 leading-relaxed'>
-                    {item.desc}
-                  </p>
-                </SliderBtn>
-              ))}
-            </SliderBtnGroup>
           </ProgressSlider>
+          
+          {/* Subtle indicator of which image is active could be added here if needed */}
         </div>
       </div>
     </section>
