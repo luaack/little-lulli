@@ -10,28 +10,28 @@ import {
 
 const items = [
   {
-    img: "https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=1170&auto=format&fit=crop",
-    title: 'Coleção Clássica',
-    desc: 'Laços atemporais em cores neutras e suaves, ideais para o dia a dia e momentos especiais.',
-    sliderName: 'classica',
+    img: "/colecao-1.jpg",
+    title: 'Jardim Encantado',
+    desc: 'Laços bordados à mão com delicadeza e cores que celebram a natureza.',
+    sliderName: 'jardim',
   },
   {
-    img: "https://images.unsplash.com/photo-1558000143-a621dbb80b7c?q=80&w=1170&auto=format&fit=crop",
-    title: 'Laços de Veludo',
-    desc: 'A elegância do veludo em laços sofisticados, perfeitos para celebrações de outono e inverno.',
-    sliderName: 'veludo',
+    img: "/colecao-2.jpg",
+    title: 'Laços de Flor',
+    desc: 'Prendedores delicados com detalhes florais para iluminar qualquer penteado.',
+    sliderName: 'flores',
   },
   {
-    img: "https://images.unsplash.com/photo-1602143431631-419b4ef3b3a6?q=80&w=1170&auto=format&fit=crop",
-    title: 'Estampa Floral',
-    desc: 'Delicadeza e alegria em estampas exclusivas que trazem a essência da primavera.',
-    sliderName: 'floral',
+    img: "/colecao-3.jpg",
+    title: 'Amigos da Floresta',
+    desc: 'Bordados lúdicos de bichinhos que trazem diversão e estilo para as pequenas.',
+    sliderName: 'raposa',
   },
   {
-    img: "https://images.unsplash.com/photo-1596073434685-5df18cc18928?q=80&w=1170&auto=format&fit=crop",
-    title: 'Edição Limitada',
-    desc: 'Peças sazonais com aplicações especiais e detalhes únicos feitos totalmente à mão.',
-    sliderName: 'limitada',
+    img: "/colecao-4.jpg",
+    title: 'Momentos Lulli',
+    desc: 'O sorriso de quem usa o carinho e o cuidado em forma de laço.',
+    sliderName: 'momentos',
   },
 ];
 
@@ -54,7 +54,7 @@ export function CollectionsCarousel() {
         </div>
 
         <div className="max-w-5xl mx-auto relative">
-          <ProgressSlider vertical={false} activeSlider='classica'>
+          <ProgressSlider vertical={false} activeSlider='jardim'>
             <SliderContent>
               {items.map((item, index) => (
                 <SliderWrapper key={index} value={item.sliderName}>
