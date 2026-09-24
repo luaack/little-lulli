@@ -1,29 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
+@import "lenis/dist/lenis.css";
 
 @custom-variant dark (&:is(.dark *));
 
+/* ------------------------------------------------------------------ */
+/* Little Lulli — brand tokens                                         */
+/* Palette pulled from the products: linen, dusty rose, mint thread,   */
+/* golden thread and a warm cocoa for text.                            */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-linen: #fbf6f1;
+  --color-cream: #f5ebe3;
+  --color-blush: #f2d6d3;
+  --color-petal: #ecc3c1;
+  --color-rose: #d49a9c;
+  --color-rose-deep: #b4636c;
+  --color-rose-ink: #9e4d58;
+  --color-terracotta: #c57457;
+  --color-mint: #8ecfc1;
+  --color-mint-deep: #4f9e8e;
+  --color-gold: #d8a657;
+  --color-cocoa: #3a2622;
+  --color-cocoa-soft: #6e5550;
+  --color-ink: #2a1a17;
+
+  --font-display: var(--font-fraunces), "Georgia", serif;
+  --font-script: var(--font-signature), cursive;
+
+  --ease-silk: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --animate-spin-slow: spin 22s linear infinite;
+  --animate-march: march 1.8s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-sway: sway 4.5s ease-in-out infinite;
+  --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+
+  @keyframes march {
+    to {
+      stroke-dashoffset: -28;
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translate3d(0, -10px, 0) rotate(calc(var(--r, 0deg) + 4deg));
+    }
+  }
+  @keyframes sway {
+    0%,
+    100% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(4deg);
+    }
+  }
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale(1.9);
+      opacity: 0;
+    }
+  }
+}
+
 @theme inline {
+  --font-sans: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -50,99 +104,186 @@
 }
 
 :root {
-  /* Little Lulli Brand Colors */
-  --lulli-rose: #f5d0da;
-  --lulli-blush: #e9a4b8;
-  --lulli-mauve: #c47a90;
-  --lulli-champagne: #fdf0f3;
-  --lulli-dark: #1a0f12;
-
-  --background: oklch(0.99 0.006 5);
-  --foreground: oklch(0.15 0.02 5);
-  --card: oklch(0.99 0.006 5);
-  --card-foreground: oklch(0.15 0.02 5);
-  --popover: oklch(0.99 0.006 5);
-  --popover-foreground: oklch(0.15 0.02 5);
-  --primary: oklch(0.85 0.06 5);
-  --primary-foreground: oklch(0.15 0.02 5);
-  --secondary: oklch(0.96 0.015 5);
-  --secondary-foreground: oklch(0.25 0.025 5);
-  --muted: oklch(0.96 0.015 5);
-  --muted-foreground: oklch(0.55 0.03 5);
-  --accent: oklch(0.93 0.04 5);
-  --accent-foreground: oklch(0.25 0.025 5);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.02 5);
-  --input: oklch(0.9 0.02 5);
-  --ring: oklch(0.75 0.06 5);
-  --chart-1: oklch(0.85 0.06 5);
-  --chart-2: oklch(0.75 0.08 5);
-  --chart-3: oklch(0.65 0.09 5);
-  --chart-4: oklch(0.55 0.07 5);
-  --chart-5: oklch(0.45 0.05 5);
+  --background: #fbf6f1;
+  --foreground: #3a2622;
+  --card: #fffdf9;
+  --card-foreground: #3a2622;
+  --popover: #fffdf9;
+  --popover-foreground: #3a2622;
+  --primary: #3a2622;
+  --primary-foreground: #fbf6f1;
+  --secondary: #f5ebe3;
+  --secondary-foreground: #3a2622;
+  --muted: #f5ebe3;
+  --muted-foreground: #6e5550;
+  --accent: #f2d6d3;
+  --accent-foreground: #3a2622;
+  --destructive: #b4363c;
+  --border: #eadbd2;
+  --input: #eadbd2;
+  --ring: #b4636c;
   --radius: 0.75rem;
-  --sidebar: oklch(0.97 0.01 5);
-  --sidebar-foreground: oklch(0.15 0.02 5);
-  --sidebar-primary: oklch(0.85 0.06 5);
-  --sidebar-primary-foreground: oklch(0.15 0.02 5);
-  --sidebar-accent: oklch(0.93 0.04 5);
-  --sidebar-accent-foreground: oklch(0.25 0.025 5);
-  --sidebar-border: oklch(0.9 0.02 5);
-  --sidebar-ring: oklch(0.75 0.06 5);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    box-sizing: border-box;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
   }
   html {
     @apply font-sans;
-    scroll-behavior: smooth;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "kern";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-blush);
+    color: var(--color-ink);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-rose-deep);
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 }
 
-/* Noise texture overlay */
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 128px 128px;
+/* Soft, rounded Fraunces cut for all display type. */
+.font-display {
+  font-family: var(--font-display);
+  font-variation-settings:
+    "SOFT" 100,
+    "WONK" 0;
+  font-optical-sizing: auto;
+}
+.font-display em,
+.font-display .wonk {
+  font-variation-settings:
+    "SOFT" 100,
+    "WONK" 1;
+}
+
+/* Film grain that sits over the whole page for a tactile, linen feel. */
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Woven linen texture for light sections. */
+.linen {
+  background-color: var(--color-linen);
+  background-image:
+    repeating-linear-gradient(0deg, rgb(58 38 34 / 0.018) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgb(58 38 34 / 0.018) 0 1px, transparent 1px 3px);
+}
+
+/* Arch frame used for product photography. */
+.arch {
+  border-radius: 999px 999px 1.75rem 1.75rem;
+}
+
+/* Grosgrain-style stitched edges for ribbons and cards. */
+.stitch-edge {
+  position: relative;
+}
+.stitch-edge::before,
+.stitch-edge::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background-image: linear-gradient(90deg, currentColor 0 55%, transparent 55% 100%);
+  background-size: 12px 100%;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.stitch-edge::before {
+  top: 7px;
+}
+.stitch-edge::after {
+  bottom: 7px;
+}
+
+.stitch-border {
+  outline: 1.5px dashed currentColor;
+  outline-offset: -8px;
+}
+
+/* Intro curtain — CSS-driven so it starts on first paint, before hydration. */
+.intro-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  fill-opacity: 0;
+  animation:
+    intro-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+    intro-fill 0.45s ease 1.05s forwards;
+}
+.intro-rise {
+  transform: translateY(110%);
+  animation: intro-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.intro-fade {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: intro-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+}
+.intro-line {
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: intro-line 1.7s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+}
+@keyframes intro-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes intro-fill {
+  to {
+    fill-opacity: 1;
+    stroke-opacity: 0;
+  }
+}
+@keyframes intro-rise {
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes intro-fade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes intro-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Hide the intro curtain before paint when it has been seen this session. */
+html[data-intro="skip"] [data-intro-curtain] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-intro-curtain] {
+    display: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
