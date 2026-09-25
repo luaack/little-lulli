@@ -12,7 +12,8 @@ import {
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 import { useIntro } from "@/components/providers";
-import { BowMark, Daisy, NeedleIcon, Rosette, RotatingBadge } from "@/components/decor";
+import { BowMark, Daisy, NeedleIcon, Rosette } from "@/components/decor";
+import { RotatingBadge } from "@/components/rotating-badge";
 import { WhatsAppIcon } from "@/components/icons";
 import { EASE_SILK, Magnetic, RevealText, StitchPath, useRange } from "@/components/motion";
 import { ScrollLink } from "@/components/scroll-link";
@@ -55,7 +56,7 @@ export function Hero() {
       id="home"
       ref={ref}
       aria-labelledby="hero-title"
-      className="relative isolate overflow-hidden"
+      className="relative isolate overflow-hidden [contain:paint]"
       onPointerMove={(e) => {
         if (e.pointerType !== "mouse") return;
         px.set(e.clientX / window.innerWidth - 0.5);
@@ -228,9 +229,6 @@ export function Hero() {
                 animate={show ? { scale: 1, opacity: 1, rotate: 0 } : undefined}
                 transition={{ duration: 1.3, delay: 0.75, ease: EASE_SILK }}
               >
-                <svg viewBox="0 0 100 100" className="absolute -inset-[7%] size-[114%] animate-spin-slow text-mint-deep" aria-hidden="true">
-                  <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.7" strokeDasharray="2.2 2.2" />
-                </svg>
                 <div className="relative aspect-square overflow-hidden rounded-full border-[6px] border-linen shadow-[0_30px_60px_-30px_rgba(58,38,34,0.6)]">
                   <Image
                     src="/colecao-3.jpeg"
@@ -240,6 +238,11 @@ export function Hero() {
                     className="scale-125 object-cover object-[50%_40%]"
                     loading="eager"
                   />
+                </div>
+                <div className="pointer-events-none absolute -inset-[7%] animate-spin-slow text-mint-deep" aria-hidden="true">
+                  <svg viewBox="0 0 100 100" className="size-full">
+                    <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" strokeWidth="0.7" strokeDasharray="2.2 2.2" />
+                  </svg>
                 </div>
               </motion.div>
             </motion.div>
@@ -277,7 +280,7 @@ export function Hero() {
                 animate={show ? { scale: 1, rotate: 0 } : undefined}
                 transition={{ duration: 1.2, delay: 1.1, ease: EASE_SILK }}
               >
-                <RotatingBadge className="aspect-square w-full rounded-full bg-cocoa text-linen shadow-xl" textClassName="text-[14px]">
+                <RotatingBadge className="aspect-square w-full rounded-full bg-cocoa text-linen shadow-xl" fontSize={14}>
                   <BowMark tone="blush" className="w-[2.4rem] md:w-12" />
                 </RotatingBadge>
               </motion.div>
@@ -294,7 +297,9 @@ export function Hero() {
                   animate={show ? { scale: 1, rotate: 0 } : undefined}
                   transition={{ duration: 1, delay: d.delay, ease: [0.34, 1.56, 0.64, 1] }}
                 >
-                  <Daisy className="w-full animate-float drop-shadow-sm" />
+                  <div className="animate-float">
+                    <Daisy className="w-full drop-shadow-sm" />
+                  </div>
                 </motion.div>
               </motion.div>
             ))}

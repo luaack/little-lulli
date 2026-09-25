@@ -147,7 +147,7 @@ export function Collections() {
       id="colecoes"
       ref={sectionRef}
       aria-labelledby="colecoes-title"
-      className="relative py-20 lg:py-0"
+      className="relative py-20 [contain:paint] lg:py-0"
       style={isDesktop && distance > 0 ? { height: `calc(100vh + ${distance}px)` } : undefined}
     >
       <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center lg:overflow-hidden">

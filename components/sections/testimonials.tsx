@@ -90,7 +90,7 @@ export function Testimonials() {
       id="depoimentos"
       ref={sectionRef}
       aria-labelledby="depoimentos-title"
-      className="relative isolate overflow-hidden rounded-t-[2.5rem] bg-ink py-24 text-linen md:rounded-t-[4rem] md:py-36"
+      className="relative isolate overflow-hidden rounded-t-[2.5rem] bg-ink py-24 text-linen [contain:paint] md:rounded-t-[4rem] md:py-36"
     >
       <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 -z-10 opacity-[0.07] mix-blend-screen" />
       <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-10 -z-10 size-[40rem] rounded-full bg-rose-deep/25 blur-[140px]" />
@@ -98,13 +98,19 @@ export function Testimonials() {
 
       {/* Drifting bows */}
       <motion.div aria-hidden="true" style={{ y: floatA }} className="pointer-events-none absolute right-[8%] top-[18%] hidden w-24 rotate-12 md:block">
-        <BowMark tone="blush" className="w-full animate-float opacity-90" />
+        <div className="animate-float">
+          <BowMark tone="blush" className="w-full opacity-90" />
+        </div>
       </motion.div>
       <motion.div aria-hidden="true" style={{ y: floatB }} className="pointer-events-none absolute bottom-[14%] left-[5%] hidden w-16 -rotate-12 md:block">
-        <BowMark tone="mint" className="w-full animate-float opacity-80" />
+        <div className="animate-float">
+          <BowMark tone="mint" className="w-full opacity-80" />
+        </div>
       </motion.div>
       <motion.div aria-hidden="true" style={{ y: floatC }} className="pointer-events-none absolute right-[26%] bottom-[10%] hidden w-12 md:block">
-        <Daisy className="w-full animate-float" />
+        <div className="animate-float">
+          <Daisy className="w-full" />
+        </div>
       </motion.div>
 
       <div className="relative mx-auto max-w-6xl px-5 md:px-8">
@@ -156,9 +162,14 @@ export function Testimonials() {
                     <Fragment key={i}>
                       <motion.span
                         className="inline-block"
-                        initial={{ opacity: 0, y: 18, filter: "blur(10px)" }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                        transition={{ duration: 0.7, delay: i * 0.028, ease: EASE_SILK }}
+                        initial={{ opacity: 0, transform: "translateY(18px)", filter: "blur(10px)" }}
+                        animate={{ opacity: 1, transform: "translateY(0px)", filter: "blur(0px)" }}
+                        transition={{
+                          duration: 0.7,
+                          delay: i * 0.028,
+                          ease: EASE_SILK,
+                          transform: reduce ? { duration: 0 } : { duration: 0.7, delay: i * 0.028, ease: EASE_SILK },
+                        }}
                       >
                         {pieces.map((piece, j) =>
                           piece.hl ? (

@@ -213,27 +213,31 @@
 }
 
 /* Intro curtain — CSS-driven so it starts on first paint, before hydration. */
+/* Timeline (≈4s): draw 0.15–2.1s · name 0.9–2.5s · colour 2.0–2.6s · wiggle 2.6–3.8s · line to 3.9s. */
 .intro-draw {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
   fill-opacity: 0;
   animation:
-    intro-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) forwards,
-    intro-fill 0.45s ease 1.05s forwards;
+    intro-draw 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards,
+    intro-fill 0.6s ease 2s forwards;
+}
+.intro-wiggle {
+  animation: intro-wiggle 1.2s cubic-bezier(0.37, 0, 0.63, 1) 2.6s both;
 }
 .intro-rise {
   transform: translateY(110%);
-  animation: intro-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: intro-rise 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .intro-fade {
   opacity: 0;
   transform: translateY(8px);
-  animation: intro-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.85s forwards;
+  animation: intro-fade 0.9s cubic-bezier(0.22, 1, 0.36, 1) 1.9s forwards;
 }
 .intro-line {
   transform: scaleX(0);
   transform-origin: left;
-  animation: intro-line 1.7s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+  animation: intro-line 3.75s cubic-bezier(0.45, 0, 0.25, 1) 0.15s forwards;
 }
 @keyframes intro-draw {
   to {
@@ -244,6 +248,21 @@
   to {
     fill-opacity: 1;
     stroke-opacity: 0;
+  }
+}
+@keyframes intro-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(-7deg) scale(1.06);
+  }
+  50% {
+    transform: rotate(5deg) scale(1.04);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.01);
   }
 }
 @keyframes intro-rise {
@@ -278,6 +297,18 @@ html[data-intro="skip"] [data-intro-curtain] {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Off-screen sections don't need their decorative loops serviced every frame. */
+[data-offscreen] :is(.animate-spin-slow, .animate-float, .animate-sway, .animate-pulse-ring, .animate-march) {
+  animation-play-state: paused;
+}
+
+/* stroke-dashoffset can't run on the compositor — skip the endless march on touch screens. */
+@media (hover: none) {
+  .animate-march {
+    animation: none;
   }
 }
 

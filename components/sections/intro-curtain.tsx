@@ -1,14 +1,14 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useLenis } from "lenis/react";
 import { useEffect } from "react";
 import { useIntro } from "@/components/providers";
 import { BOW_VIEWBOX, bowPaths } from "@/components/decor";
 import { EASE_SILK } from "@/components/motion";
+import { setScrollLocked } from "@/lib/smooth-scroll";
 
 /** Total intro length, measured from navigation start (not hydration). */
-const INTRO_MS = 2000;
+const INTRO_MS = 4000;
 
 const drawn = [
   { d: bowPaths.loopLeft, fill: "#D49A9C" },
@@ -21,7 +21,6 @@ const letters = "Little Lulli".split("");
 
 export function IntroCurtain() {
   const { done, finish } = useIntro();
-  const lenis = useLenis();
 
   useEffect(() => {
     const skip =
@@ -39,10 +38,8 @@ export function IntroCurtain() {
   }, [finish]);
 
   useEffect(() => {
-    if (!lenis) return;
-    if (done) lenis.start();
-    else lenis.stop();
-  }, [done, lenis]);
+    setScrollLocked(!done);
+  }, [done]);
 
   return (
     <AnimatePresence>
@@ -51,7 +48,7 @@ export function IntroCurtain() {
           key="curtain"
           data-intro-curtain
           aria-hidden="true"
-          className="linen fixed inset-0 z-[150] grid place-items-center"
+          className="linen fixed inset-0 z-[150] grid touch-none place-items-center"
           initial={{ clipPath: "ellipse(160% 125% at 50% 0%)" }}
           exit={{ clipPath: "ellipse(160% 0% at 50% 0%)" }}
           transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
@@ -61,29 +58,31 @@ export function IntroCurtain() {
             exit={{ y: -60, opacity: 0 }}
             transition={{ duration: 0.55, ease: EASE_SILK }}
           >
-            <svg viewBox={BOW_VIEWBOX} className="w-28 overflow-visible md:w-36" fill="none">
-              {drawn.map(({ d, fill }, i) => (
-                <path
-                  key={d}
-                  d={d}
-                  pathLength={1}
-                  fill={fill}
-                  stroke="#3A2622"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="intro-draw"
-                  style={{ animationDelay: `${0.05 + i * 0.1}s, 1.05s` }}
-                />
-              ))}
-            </svg>
+            <div className="intro-wiggle">
+              <svg viewBox={BOW_VIEWBOX} className="w-28 overflow-visible md:w-36" fill="none">
+                {drawn.map(({ d, fill }, i) => (
+                  <path
+                    key={d}
+                    d={d}
+                    pathLength={1}
+                    fill={fill}
+                    stroke="#3A2622"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="intro-draw"
+                    style={{ animationDelay: `${0.15 + i * 0.14}s, 2s` }}
+                  />
+                ))}
+              </svg>
+            </div>
 
             <p className="font-display mt-6 flex overflow-hidden text-4xl italic text-cocoa md:text-5xl">
               {letters.map((l, i) => (
                 <span
                   key={i}
                   className="intro-rise inline-block"
-                  style={{ animationDelay: `${0.4 + i * 0.035}s` }}
+                  style={{ animationDelay: `${0.9 + i * 0.05}s` }}
                 >
                   {l === " " ? "\u00a0" : l}
                 </span>

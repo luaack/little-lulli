@@ -1,5 +1,3 @@
-import { useId } from "react";
-import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
 /* Bow                                                                  */
@@ -158,40 +156,5 @@ export function NeedleIcon({ className }: { className?: string }) {
       <ellipse cx="18.6" cy="5.4" rx="1.9" ry=".75" transform="rotate(-45 18.6 5.4)" />
       <path d="M18.4 5.6c3.8 4.5-3 9.2-7.4 6.8-3.6-2-7 .3-7.6 3" strokeDasharray="2 2.4" />
     </svg>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/* Rotating circular badge                                             */
-/* ------------------------------------------------------------------ */
-
-export function RotatingBadge({
-  text = "bordado à mão ✿ feito com amor ✿ little lulli ✿ ",
-  className,
-  textClassName,
-  children,
-}: {
-  text?: string;
-  className?: string;
-  textClassName?: string;
-  children?: React.ReactNode;
-}) {
-  const id = `badge-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
-  return (
-    <div className={cn("relative grid place-items-center", className)}>
-      <svg viewBox="0 0 200 200" className="absolute inset-0 size-full animate-spin-slow" aria-hidden="true">
-        <defs>
-          <path id={id} d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0" />
-        </defs>
-        <text
-          className={cn("fill-current text-[15px] font-medium uppercase tracking-[0.28em]", textClassName)}
-        >
-          <textPath href={`#${id}`} textLength="486" lengthAdjust="spacing">
-            {text}
-          </textPath>
-        </text>
-      </svg>
-      <div className="relative">{children}</div>
-    </div>
   );
 }

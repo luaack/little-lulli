@@ -16,7 +16,7 @@ const phoneLabel = WHATSAPP_NUMBER.replace(/^55(\d{2})(\d{5})(\d{4})$/, "($1) $2
 
 export function SiteFooter() {
   return (
-    <footer className="relative isolate overflow-hidden bg-ink text-linen">
+    <footer className="relative isolate overflow-hidden bg-ink text-linen [contain:paint]">
       <div aria-hidden="true" className="grain pointer-events-none absolute inset-0 -z-10 opacity-[0.06] mix-blend-screen" />
       <div aria-hidden="true" className="pointer-events-none absolute -top-40 left-1/2 -z-10 size-[40rem] -translate-x-1/2 rounded-full bg-rose-deep/20 blur-[140px]" />
 
