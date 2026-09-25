@@ -3,6 +3,7 @@
 import {
   motion,
   useAnimationFrame,
+  useInView,
   useMotionValue,
   useReducedMotion,
   useScroll,
@@ -32,6 +33,8 @@ function Ribbon({
   itemClassName?: string;
 }) {
   const reduce = useReducedMotion();
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { margin: "100px 0px" });
   const baseX = useMotionValue(0);
   const { scrollY } = useScroll();
   const velocity = useVelocity(scrollY);
@@ -41,7 +44,7 @@ function Ribbon({
   const direction = useRef(1);
 
   useAnimationFrame((_, delta) => {
-    if (reduce) return;
+    if (reduce || !inView) return;
     let moveBy = direction.current * baseVelocity * (delta / 1000);
     const f = factor.get();
     if (f < 0) direction.current = -1;
@@ -51,8 +54,8 @@ function Ribbon({
   });
 
   return (
-    <div className={cn("stitch-edge flex overflow-hidden whitespace-nowrap py-4 md:py-5", className)}>
-      <motion.div className="flex shrink-0" style={{ x }}>
+    <div ref={ref} className={cn("stitch-edge flex overflow-hidden whitespace-nowrap py-4 md:py-5", className)}>
+      <motion.div className="flex shrink-0 will-change-transform" style={{ x }}>
         {Array.from({ length: COPIES }, (_, copy) => (
           <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy > 0}>
             {items.map((item) => (
@@ -86,7 +89,7 @@ function Ribbon({
 
 export function RibbonMarquee() {
   return (
-    <section aria-label="Nossos diferenciais" className="relative z-10 -my-6 overflow-hidden py-16 md:-my-4 md:py-24">
+    <section aria-label="Nossos diferenciais" className="relative z-10 -my-6 overflow-hidden py-16 [contain:paint] md:-my-4 md:py-24">
       <div className="-rotate-[4deg] scale-[1.08]">
         <Ribbon
           baseVelocity={-2.2}

@@ -1,15 +1,15 @@
 "use client";
 
-import { useLenis } from "lenis/react";
+import { useSmoothScroll } from "@/lib/smooth-scroll";
 import type { ComponentProps } from "react";
 
-/** In-page anchor that glides with Lenis (and still works without JS). */
+/** In-page anchor: glides with Lenis on desktop, native smooth scroll elsewhere, plain link without JS. */
 export function ScrollLink({
   href,
   onClick,
   ...props
 }: ComponentProps<"a"> & { href: `#${string}` }) {
-  const lenis = useLenis();
+  const lenis = useSmoothScroll();
 
   return (
     <a

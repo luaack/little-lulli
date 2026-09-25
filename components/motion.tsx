@@ -4,6 +4,7 @@ import {
   motion,
   transform,
   useMotionValue,
+  useReducedMotion,
   useSpring,
   useTransform,
   type MotionValue,
@@ -43,13 +44,22 @@ const revealTags = {
   div: motion.div,
 };
 
+/*
+ * Reveals animate a full `transform` string so motion hands them to WAAPI and they run
+ * on the compositor (x/y/rotate shorthands are composed in JS on every frame). The
+ * reduced-motion variant keeps identical values — so SSR markup matches — but snaps.
+ */
+const WORD_HIDDEN = "translateY(115%) rotate(5deg)";
+const WORD_SHOWN = "translateY(0%) rotate(0deg)";
+
 const wordVariants: Variants = {
-  hidden: { y: "115%", rotate: 5 },
-  show: {
-    y: "0%",
-    rotate: 0,
-    transition: { duration: 1.05, ease: EASE_SILK },
-  },
+  hidden: { transform: WORD_HIDDEN },
+  show: { transform: WORD_SHOWN, transition: { duration: 1.05, ease: EASE_SILK } },
+};
+
+const wordVariantsReduced: Variants = {
+  hidden: { transform: WORD_HIDDEN },
+  show: { transform: WORD_SHOWN, transition: { duration: 0 } },
 };
 
 type Token = { kind: "word"; text: string; className?: string } | { kind: "br" };
@@ -93,6 +103,7 @@ export function RevealText({
   const Tag = revealTags[as];
   const tokens = tokenize(segments);
   const controlled = play !== undefined;
+  const reduce = useReducedMotion();
 
   return (
     <Tag
@@ -102,7 +113,7 @@ export function RevealText({
       animate={controlled ? (play ? "show" : "hidden") : undefined}
       whileInView={controlled ? undefined : "show"}
       viewport={{ once: true, margin: "0px 0px -12% 0px" }}
-      transition={{ staggerChildren: stagger, delayChildren: delay }}
+      transition={reduce ? undefined : { staggerChildren: stagger, delayChildren: delay }}
     >
       {tokens.map((token, i) =>
         token.kind === "br" ? (
@@ -111,8 +122,8 @@ export function RevealText({
           <span key={i}>
             <span className="-mb-[0.18em] -mr-[0.08em] inline-block overflow-hidden pb-[0.18em] pr-[0.08em] align-bottom">
               <motion.span
-                className={cn("inline-block origin-bottom-left will-change-transform", token.className)}
-                variants={wordVariants}
+                className={cn("inline-block origin-bottom-left", token.className)}
+                variants={reduce ? wordVariantsReduced : wordVariants}
               >
                 {token.text}
               </motion.span>
@@ -149,13 +160,19 @@ export function FadeIn({
   as?: keyof typeof fadeTags;
 }) {
   const Comp = fadeTags[as];
+  const reduce = useReducedMotion();
   return (
     <Comp
       className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, transform: `translateY(${y}px)` }}
+      whileInView={{ opacity: 1, transform: "translateY(0px)" }}
       viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 1, delay, ease: EASE_SILK }}
+      transition={{
+        duration: 1,
+        delay,
+        ease: EASE_SILK,
+        transform: reduce ? { duration: 0 } : { duration: 1, delay, ease: EASE_SILK },
+      }}
     >
       {children}
     </Comp>

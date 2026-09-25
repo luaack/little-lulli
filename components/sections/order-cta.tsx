@@ -2,7 +2,8 @@
 
 import { motion } from "motion/react";
 import { Gift, Heart, MessageCircleHeart } from "lucide-react";
-import { BowMark, Daisy, Rosette, RotatingBadge } from "@/components/decor";
+import { BowMark, Daisy, Rosette } from "@/components/decor";
+import { RotatingBadge } from "@/components/rotating-badge";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
 import { EASE_SILK, FadeIn, Magnetic, RevealText, StitchPath } from "@/components/motion";
 import { DEFAULT_WHATSAPP_MESSAGE, INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/lib/site";
@@ -34,7 +35,7 @@ const floating = [
 
 export function OrderCta() {
   return (
-    <section id="contato" aria-labelledby="contato-title" className="relative overflow-hidden py-24 md:py-36">
+    <section id="contato" aria-labelledby="contato-title" className="relative overflow-hidden py-24 [contain:paint] md:py-36">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         {/* How to order */}
         <div className="text-center">
@@ -97,13 +98,14 @@ export function OrderCta() {
               <BowMark tone={f.tone} className="w-full drop-shadow-[0_10px_14px_rgba(58,38,34,0.18)]" />
             </div>
           ))}
-          <Daisy className="pointer-events-none absolute left-[26%] top-[8%] hidden w-10 animate-float md:block" />
+          <div className="pointer-events-none absolute left-[26%] top-[8%] hidden w-10 animate-float md:block">
+            <Daisy className="w-full" />
+          </div>
           <Rosette className="pointer-events-none absolute bottom-[26%] right-[28%] hidden w-5 md:block" color="#B4636C" />
 
           <RotatingBadge
             text="encomende ✿ bordado à mão ✿ little lulli ✿ "
             className="mx-auto mb-8 size-24 rounded-full bg-cocoa text-linen md:size-28"
-            textClassName="text-[15px]"
           >
             <WhatsAppIcon className="size-7 text-blush md:size-8" />
           </RotatingBadge>

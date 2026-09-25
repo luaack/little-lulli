@@ -55,7 +55,7 @@ export function Moments() {
     <section
       ref={sectionRef}
       aria-labelledby="momentos-title"
-      className="relative h-[260vh] bg-linen"
+      className="relative h-[260vh] bg-linen [contain:paint]"
     >
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Video in an arch that grows to full bleed */}
@@ -71,6 +71,9 @@ export function Moments() {
               poster="/momentos-poster.jpg"
               aria-label="Bebê sorrindo, deitada em lençóis brancos, usando um laço rosado na cabeça"
             >
+              {/* Phones get a 720p cut: half the bytes and a lighter decode while the frame scales. */}
+              <source src="/momentos-720.webm" type="video/webm" media="(max-width: 767px)" />
+              <source src="/momentos-720.mp4" type="video/mp4" media="(max-width: 767px)" />
               <source src="/momentos.webm" type="video/webm" />
               <source src="/momentos.mp4" type="video/mp4" />
             </video>

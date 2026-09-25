@@ -1,13 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { useLenis } from "lenis/react";
 import { useEffect, useRef, useState } from "react";
 import { useIntro } from "@/components/providers";
 import { BowMark } from "@/components/decor";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
 import { EASE_SILK } from "@/components/motion";
 import { ScrollLink } from "@/components/scroll-link";
+import { setScrollLocked } from "@/lib/smooth-scroll";
 import {
   DEFAULT_WHATSAPP_MESSAGE,
   INSTAGRAM_HANDLE,
@@ -19,7 +19,6 @@ import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
   const { done } = useIntro();
-  const lenis = useLenis();
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -60,7 +59,7 @@ export function SiteHeader() {
   // Lock scroll + close on Escape while the mobile menu is open.
   useEffect(() => {
     if (!open) return;
-    lenis?.stop();
+    setScrollLocked(true);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setOpen(false);
@@ -70,9 +69,9 @@ export function SiteHeader() {
     window.addEventListener("keydown", onKey);
     return () => {
       window.removeEventListener("keydown", onKey);
-      lenis?.start();
+      setScrollLocked(false);
     };
-  }, [open, lenis]);
+  }, [open]);
 
   return (
     <>
@@ -172,7 +171,7 @@ export function SiteHeader() {
             role="dialog"
             aria-modal="true"
             aria-label="Menu"
-            className="linen fixed inset-0 z-[90] flex flex-col px-6 pb-8 pt-28 lg:hidden"
+            className="linen fixed inset-0 z-[90] flex touch-none flex-col px-6 pb-8 pt-28 lg:hidden"
             initial={{ clipPath: "circle(0% at 92% 44px)" }}
             animate={{ clipPath: "circle(150% at 92% 44px)" }}
             exit={{ clipPath: "circle(0% at 92% 44px)" }}

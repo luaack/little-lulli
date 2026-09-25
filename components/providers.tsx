@@ -1,8 +1,8 @@
 "use client";
 
-import { ReactLenis } from "lenis/react";
 import { MotionConfig } from "motion/react";
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { startSmoothScroll, stopSmoothScroll } from "@/lib/smooth-scroll";
 
 type IntroState = { done: boolean; finish: () => void };
 
@@ -17,11 +17,27 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const finish = useCallback(() => setDone(true), []);
   const intro = useMemo(() => ({ done, finish }), [done, finish]);
 
+  useEffect(() => {
+    startSmoothScroll();
+    return stopSmoothScroll;
+  }, []);
+
+  // Pause decorative CSS loops in sections that are off screen (see globals.css).
+  useEffect(() => {
+    const sections = document.querySelectorAll("main > section, main > div, footer");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) entry.target.toggleAttribute("data-offscreen", !entry.isIntersecting);
+      },
+      { rootMargin: "150px 0px" },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <ReactLenis root options={{ lerp: 0.09, autoRaf: true }}>
-      <MotionConfig reducedMotion="user">
-        <IntroContext.Provider value={intro}>{children}</IntroContext.Provider>
-      </MotionConfig>
-    </ReactLenis>
+    <MotionConfig reducedMotion="user">
+      <IntroContext.Provider value={intro}>{children}</IntroContext.Provider>
+    </MotionConfig>
   );
 }

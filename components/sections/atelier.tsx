@@ -3,7 +3,8 @@
 import Image from "next/image";
 import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
 import { useRef, useState } from "react";
-import { Daisy, RotatingBadge } from "@/components/decor";
+import { Daisy } from "@/components/decor";
+import { RotatingBadge } from "@/components/rotating-badge";
 import { EASE_SILK, FadeIn, RevealText } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
@@ -49,7 +50,7 @@ export function Atelier() {
   const threadClip = useTransform(scrollYProgress, (p) => `inset(0% 0% ${(1 - p) * 100}% 0%)`);
 
   return (
-    <section id="atelie" aria-labelledby="atelie-title" className="relative overflow-clip py-24 md:py-36">
+    <section id="atelie" aria-labelledby="atelie-title" className="relative overflow-clip py-24 [contain:paint] md:py-36">
       <div aria-hidden="true" className="pointer-events-none absolute -left-40 top-40 size-[36rem] rounded-full bg-blush/50 blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-5 md:px-8">
@@ -120,7 +121,6 @@ export function Atelier() {
               <RotatingBadge
                 text="feito à mão ✿ ponto a ponto ✿ com amor ✿ "
                 className="absolute -right-8 top-10 size-32 rounded-full bg-linen text-cocoa shadow-xl"
-                textClassName="text-[15px]"
               >
                 <Daisy className="w-12" />
               </RotatingBadge>
