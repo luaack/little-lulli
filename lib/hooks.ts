@@ -22,3 +22,12 @@ export function useMediaQuery(query: string) {
 export const useIsDesktop = () => useMediaQuery("(min-width: 1024px)");
 export const useFinePointer = () =>
   useMediaQuery("(hover: hover) and (pointer: fine)");
+
+/** `false` no servidor e na hidratação, `true` depois — evita piscar "não encontrado" com dados do localStorage. */
+export function useHydrated() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+}

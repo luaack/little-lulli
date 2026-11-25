@@ -21,8 +21,10 @@ export type CartLine = {
 
 export type CartState = {
   lines: CartLine[];
-  /** Frete escolhido na sacola (simulado). */
-  shipping?: { cep: string; option: ShippingOption };
+  /** Último CEP digitado (sobrevive a mudanças na sacola). */
+  cep?: string;
+  /** Opção de frete escolhida na sacola (simulado); some quando a sacola muda. */
+  shipping?: ShippingOption;
 };
 
 const empty: CartState = { lines: [] };
@@ -63,8 +65,8 @@ export function setLineQty(key: string, qty: number) {
 
 export const removeLine = (key: string) => setLineQty(key, 0);
 export const clearCart = () => cartStore.set(empty);
-export const setCartShipping = (shipping: CartState["shipping"]) =>
-  cartStore.update((state) => ({ ...state, shipping }));
+export const setCartShipping = (cep: string, shipping?: ShippingOption) =>
+  cartStore.update((state) => ({ ...state, cep, shipping }));
 
 export type DetailedLine = CartLine & {
   product: Product;
