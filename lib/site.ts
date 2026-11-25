@@ -20,11 +20,12 @@ export const navItems = [
   { label: "Contato", href: "/contato", id: "contato" },
 ] as const;
 
-export type CategorySlug = "tic-tacs" | "tiaras" | "faixas";
+export type CategorySlug = "tic-tacs" | "lacos" | "tiaras" | "faixas";
 export type CollectionSlug = "jardim-encantado" | "lacos-de-flor" | "amigos-da-floresta";
 
 export const categories: { slug: CategorySlug; title: string; description: string }[] = [
   { slug: "tic-tacs", title: "Tic tacs", description: "Presilhas tic tac bordadas, vendidas em par ou unidade." },
+  { slug: "lacos", title: "Laços", description: "Laços bordados à mão para toda a infância." },
   { slug: "tiaras", title: "Tiaras", description: "Tiaras macias, leves e bordadas à mão." },
   { slug: "faixas", title: "Faixas", description: "Faixinhas de laço para os pequenos fios." },
 ];

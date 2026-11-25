@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 const inputClass =
   "h-12 w-full rounded-2xl border border-cocoa/20 bg-linen px-4 text-cocoa placeholder:text-cocoa/40";
 
-const PIECES = ["Tic tac", "Tiara", "Faixa", "Outra (conto no WhatsApp)"];
+const PIECES = ["Tic tac", "Laço", "Tiara", "Faixa", "Outra (conto no WhatsApp)"];
 const OCCASIONS = ["Aniversário", "Batizado", "Ensaio fotográfico", "Presente", "Dia a dia", "Outra"];
 
 function Field({ label, hint, className, children }: { label: string; hint?: string; className?: string; children: React.ReactNode }) {
@@ -24,7 +24,7 @@ function Field({ label, hint, className, children }: { label: string; hint?: str
   );
 }
 
-type Initial = { slug: string; name: string; category: string; collection: string };
+type Initial = { slug: string; name: string; category: string; collection?: string };
 
 export function PersonalizeForm({ initial }: { initial?: Initial }) {
   const [sent, setSent] = useState<{ link: string; message: string } | null>(null);

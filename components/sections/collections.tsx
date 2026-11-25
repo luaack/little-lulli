@@ -14,6 +14,7 @@ import { useEffect, useRef, useState } from "react";
 import { BowMark } from "@/components/decor";
 import { InstagramIcon } from "@/components/icons";
 import { EASE_SILK, FadeIn, RevealText, useRange } from "@/components/motion";
+import { activeCollections } from "@/data/products";
 import { useIsDesktop } from "@/lib/hooks";
 import {
   INSTAGRAM_HANDLE,
@@ -46,10 +47,10 @@ function CollectionCard({
       transition={{ duration: 1.1, delay: index * 0.08, ease: EASE_SILK }}
     >
       <Link
-        href={`/loja/colecao/${item.slug}`}
+        href={activeCollections.some((c) => c.slug === item.slug) ? `/loja/colecao/${item.slug}` : "/loja"}
         data-cursor="Ver peças"
         className="block"
-        aria-label={`Ver as peças da coleção ${item.title}`}
+        aria-label={`Ver a loja — coleção ${item.title}`}
       >
         <div
           className={cn(

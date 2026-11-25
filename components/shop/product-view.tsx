@@ -60,7 +60,7 @@ export function ProductView({ product }: { product: Product }) {
           <Image
             key={product.images[image]}
             src={product.images[image]}
-            alt={`${product.name} — foto ${image + 1} de ${product.images.length} (ilustrativa)`}
+            alt={`${product.name} — foto ${image + 1} de ${product.images.length}`}
             fill
             priority
             sizes="(min-width: 1024px) 55vw, 100vw"
@@ -87,7 +87,7 @@ export function ProductView({ product }: { product: Product }) {
             ))}
           </ul>
         )}
-        <p className="mt-3 text-sm text-cocoa-soft">Fotos ilustrativas — ainda não há foto individual de cada peça.</p>
+        <p className="mt-3 text-sm text-cocoa-soft">Fotos reais da peça. O bordado é feito à mão, então pode haver pequenas variações.</p>
       </div>
 
       {/* Informações */}
@@ -103,12 +103,16 @@ export function ProductView({ product }: { product: Product }) {
                 {category?.title}
               </Link>
             </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <Link href={`/loja/colecao/${product.collection}`} className="underline-offset-4 hover:underline">
-                {collection?.title}
-              </Link>
-            </li>
+            {collection && (
+              <>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link href={`/loja/colecao/${product.collection}`} className="underline-offset-4 hover:underline">
+                    {collection.title}
+                  </Link>
+                </li>
+              </>
+            )}
           </ol>
         </nav>
 
@@ -120,7 +124,7 @@ export function ProductView({ product }: { product: Product }) {
             {product.whatsappOnly && "a partir de "}
             {formatBRL(price)}
           </span>
-          {setId && <span className="text-cocoa-soft">/ {setId === "par" ? "par" : "unidade"}</span>}
+          {setId && <span className="text-cocoa-soft">/ {product.sets.find((s) => s.id === setId)?.label.toLowerCase()}</span>}
         </p>
         <p className="mt-4 text-lg leading-relaxed text-cocoa-soft">{product.short}</p>
 
@@ -155,7 +159,7 @@ export function ProductView({ product }: { product: Product }) {
               </fieldset>
             )}
 
-            {product.sets.length > 0 && (
+            {product.sets.length > 1 && (
               <fieldset>
                 <legend className="text-sm font-medium text-cocoa">Quantidade na peça</legend>
                 <div className="mt-3 flex flex-wrap gap-3">
@@ -253,7 +257,7 @@ export function ProductView({ product }: { product: Product }) {
             <dt className="font-medium text-cocoa">Prazo de produção</dt>
             <dd className="text-cocoa-soft">
               {product.productionDays.min} a {product.productionDays.max} dias úteis, a partir da confirmação do
-              pagamento. O prazo de entrega do frete é somado a isso.
+              pagamento, com datas combinadas pelo WhatsApp. O prazo de entrega do frete é somado a isso.
             </dd>
           </div>
           <div className="grid grid-cols-[8rem_1fr] gap-4 py-4">
@@ -261,6 +265,10 @@ export function ProductView({ product }: { product: Product }) {
             <dd className="text-cocoa-soft">{product.material}</dd>
           </div>
         </dl>
+
+        {product.note && (
+          <p className="mt-6 rounded-2xl bg-blush/50 px-4 py-3 text-sm leading-relaxed text-cocoa">{product.note}</p>
+        )}
 
         <div className="mt-6">
           <h2 className="font-display text-2xl text-cocoa">Sobre a peça</h2>

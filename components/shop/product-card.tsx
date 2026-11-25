@@ -15,7 +15,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
         <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-blush shadow-[0_30px_50px_-38px_rgba(58,38,34,0.7)]">
           <Image
             src={product.images[0]}
-            alt={`${product.name} — foto ilustrativa`}
+            alt={product.name}
             fill
             priority={priority}
             sizes="(min-width: 1024px) 28vw, (min-width: 768px) 30vw, 50vw"
@@ -37,7 +37,7 @@ export function ProductCard({ product, priority = false }: { product: Product; p
         </div>
         <div className="mt-4 px-1">
           <p className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-rose-ink">
-            {category?.title} · {collection?.title}
+            {[category?.title, collection?.title].filter(Boolean).join(" · ")}
           </p>
           <h3 className="font-display mt-1.5 text-[1.3rem] leading-tight text-cocoa md:text-[1.45rem]">{product.name}</h3>
           <p className="mt-1.5 text-cocoa-soft">

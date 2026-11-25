@@ -10,14 +10,13 @@ import { BowMark } from "@/components/decor";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
 import { EASE_SILK } from "@/components/motion";
 import { useBag } from "@/components/shop/bag-context";
+import { activeCategories, activeCollections } from "@/data/products";
 import { useCart } from "@/lib/cart";
 import { setScrollLocked } from "@/lib/smooth-scroll";
 import {
   DEFAULT_WHATSAPP_MESSAGE,
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
-  categories,
-  collections,
   navItems,
   whatsappLink,
 } from "@/lib/site";
@@ -135,11 +134,17 @@ export function SiteHeader() {
                     {link}
                     {item.id === "loja" && (
                       <div className="invisible absolute left-0 top-full z-10 pt-3 opacity-0 transition-[opacity,visibility] duration-200 group-focus-within/loja:visible group-focus-within/loja:opacity-100 group-hover/loja:visible group-hover/loja:opacity-100">
-                        <div className="grid w-[30rem] grid-cols-2 gap-6 rounded-[1.75rem] border border-cocoa/10 bg-linen p-6 shadow-[0_30px_60px_-30px_rgba(58,38,34,0.5)]">
+                        <div
+                          className={cn(
+                            "grid gap-6 rounded-[1.75rem] border border-cocoa/10 bg-linen p-6 shadow-[0_30px_60px_-30px_rgba(58,38,34,0.5)]",
+                            activeCollections.length ? "w-[30rem] grid-cols-2" : "w-60",
+                          )}
+                        >
+                          {activeCollections.length > 0 && (
                           <div>
                             <p className="text-xs font-medium uppercase tracking-[0.2em] text-rose-ink">Coleções</p>
                             <ul className="mt-3 space-y-1">
-                              {collections.map((c) => (
+                              {activeCollections.map((c) => (
                                 <li key={c.slug}>
                                   <Link
                                     href={`/loja/colecao/${c.slug}`}
@@ -151,10 +156,11 @@ export function SiteHeader() {
                               ))}
                             </ul>
                           </div>
+                          )}
                           <div>
                             <p className="text-xs font-medium uppercase tracking-[0.2em] text-rose-ink">Categorias</p>
                             <ul className="mt-3 space-y-1">
-                              {categories.map((c) => (
+                              {activeCategories.map((c) => (
                                 <li key={c.slug}>
                                   <Link
                                     href={`/loja/categoria/${c.slug}`}
@@ -246,7 +252,7 @@ export function SiteHeader() {
                       </Link>
                       {item.id === "loja" && (
                         <ul className="mb-3 mt-2 flex flex-wrap gap-2 pl-9">
-                          {collections.map((c) => (
+                          {activeCollections.map((c) => (
                             <li key={c.slug}>
                               <Link
                                 href={`/loja/colecao/${c.slug}`}
@@ -257,7 +263,7 @@ export function SiteHeader() {
                               </Link>
                             </li>
                           ))}
-                          {categories.map((c) => (
+                          {activeCategories.map((c) => (
                             <li key={c.slug}>
                               <Link
                                 href={`/loja/categoria/${c.slug}`}

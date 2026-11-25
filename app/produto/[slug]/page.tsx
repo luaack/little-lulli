@@ -20,7 +20,7 @@ export default async function ProductPage({ params }: PageProps<"/produto/[slug]
   if (!product) notFound();
 
   const related = products
-    .filter((p) => p.slug !== product.slug && (p.collection === product.collection || p.category === product.category))
+    .filter((p) => p.slug !== product.slug && p.category === product.category)
     .slice(0, 4);
 
   return (

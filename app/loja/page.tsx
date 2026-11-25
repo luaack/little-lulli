@@ -13,7 +13,7 @@ export default function ShopPage() {
         id="loja-title"
         segments={["Pequenas joias, ", { text: "uma a uma.", className: "italic text-rose-deep" }]}
       >
-        Tic tacs, tiaras e faixas bordados à mão. Escolha a cor, a quantidade e receba em casa.
+        Tic tacs bordados à mão, um a um. Escolha a peça, combine os detalhes pelo WhatsApp e receba em casa.
       </PageHeading>
       <div className="mt-10">
         <Catalog products={products} />

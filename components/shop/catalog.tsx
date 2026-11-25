@@ -3,7 +3,8 @@
 import { useState } from "react";
 import type { Product } from "@/data/products";
 import { ProductCard } from "@/components/shop/product-card";
-import { categories, collections, type CategorySlug, type CollectionSlug } from "@/lib/site";
+import { activeCategories, activeCollections } from "@/data/products";
+import type { CategorySlug, CollectionSlug } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 function Chip({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
@@ -51,14 +52,14 @@ export function Catalog({
   return (
     <div>
       <div className="space-y-4">
-        {!fixedCollection && (
+        {!fixedCollection && activeCollections.length > 0 && (
           <div role="group" aria-label="Filtrar por coleção">
             <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-cocoa-soft">Coleção</p>
             <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 md:mx-0 md:flex-wrap md:px-0">
               <Chip active={collection === "todas"} onClick={() => setCollection("todas")}>
                 Todas
               </Chip>
-              {collections.map((c) => (
+              {activeCollections.map((c) => (
                 <Chip key={c.slug} active={collection === c.slug} onClick={() => setCollection(c.slug)}>
                   {c.title}
                 </Chip>
@@ -66,14 +67,14 @@ export function Catalog({
             </div>
           </div>
         )}
-        {!fixedCategory && (
+        {!fixedCategory && activeCategories.length > 1 && (
           <div role="group" aria-label="Filtrar por categoria">
             <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-cocoa-soft">Categoria</p>
             <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 md:mx-0 md:flex-wrap md:px-0">
               <Chip active={category === "todas"} onClick={() => setCategory("todas")}>
                 Todas
               </Chip>
-              {categories.map((c) => (
+              {activeCategories.map((c) => (
                 <Chip key={c.slug} active={category === c.slug} onClick={() => setCategory(c.slug)}>
                   {c.title}
                 </Chip>
@@ -97,7 +98,11 @@ export function Catalog({
         </ul>
       ) : (
         <div className="mt-8 rounded-[2rem] border border-dashed border-cocoa/20 p-10 text-center">
-          <p className="font-display text-2xl text-cocoa">Nenhuma peça com esses filtros</p>
+          <p className="font-display text-2xl text-cocoa">
+            {products.some((p) => (!fixedCollection || p.collection === fixedCollection) && (!fixedCategory || p.category === fixedCategory))
+              ? "Nenhuma peça com esses filtros"
+              : "Novidades em breve por aqui"}
+          </p>
           <button
             type="button"
             onClick={() => {
