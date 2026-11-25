@@ -1,0 +1,6 @@
+/** Preços são sempre guardados em centavos (inteiros) para evitar erro de arredondamento. */
+const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+export function formatBRL(cents: number) {
+  return brl.format(cents / 100);
+}

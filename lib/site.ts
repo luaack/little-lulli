@@ -1,7 +1,8 @@
 export const WHATSAPP_NUMBER = "5561991557493";
 export const INSTAGRAM_URL = "https://www.instagram.com/uselittlelulli";
 export const INSTAGRAM_HANDLE = "@uselittlelulli";
-export const SITE_URL = "https://little-lulli.vercel.app";
+// URL pública do ambiente (definida na Vercel). NÃO aponta para o site oficial.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export function whatsappLink(message?: string) {
   const base = `https://wa.me/${WHATSAPP_NUMBER}`;
@@ -12,14 +13,26 @@ export const DEFAULT_WHATSAPP_MESSAGE =
   "Olá, Little Lulli! Vim pelo site e gostaria de encomendar um laço 🎀";
 
 export const navItems = [
-  { label: "Coleções", href: "#colecoes", id: "colecoes" },
-  { label: "Ateliê", href: "#atelie", id: "atelie" },
-  { label: "Depoimentos", href: "#depoimentos", id: "depoimentos" },
-  { label: "Contato", href: "#contato", id: "contato" },
+  { label: "Loja", href: "/loja", id: "loja" },
+  { label: "Personalizar", href: "/personalizar", id: "personalizar" },
+  { label: "Ateliê", href: "/atelie", id: "atelie" },
+  { label: "Depoimentos", href: "/depoimentos", id: "depoimentos" },
+  { label: "Contato", href: "/contato", id: "contato" },
 ] as const;
 
+export type CategorySlug = "tic-tacs" | "tiaras" | "faixas";
+export type CollectionSlug = "jardim-encantado" | "lacos-de-flor" | "amigos-da-floresta";
+
+export const categories: { slug: CategorySlug; title: string; description: string }[] = [
+  { slug: "tic-tacs", title: "Tic tacs", description: "Presilhas tic tac bordadas, vendidas em par ou unidade." },
+  { slug: "tiaras", title: "Tiaras", description: "Tiaras macias, leves e bordadas à mão." },
+  { slug: "faixas", title: "Faixas", description: "Faixinhas de laço para os pequenos fios." },
+];
+
+export const TEST_ENV_LABEL = "Ambiente de testes · preços fictícios · pagamento e frete simulados";
+
 export type Collection = {
-  slug: string;
+  slug: CollectionSlug;
   title: string;
   description: string;
   image: string;
