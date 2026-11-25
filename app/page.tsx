@@ -1,5 +1,4 @@
 import { IntroCurtain } from "@/components/sections/intro-curtain";
-import { SiteHeader } from "@/components/sections/site-header";
 import { Hero } from "@/components/sections/hero";
 import { RibbonMarquee } from "@/components/sections/ribbon-marquee";
 import { Collections } from "@/components/sections/collections";
@@ -7,7 +6,6 @@ import { Moments } from "@/components/sections/moments";
 import { Atelier } from "@/components/sections/atelier";
 import { Testimonials } from "@/components/sections/testimonials";
 import { OrderCta } from "@/components/sections/order-cta";
-import { SiteFooter } from "@/components/sections/site-footer";
 import { CursorFollower, FloatingWhatsApp, ScrollProgress } from "@/components/sections/overlays";
 
 export default function Home() {
@@ -15,7 +13,6 @@ export default function Home() {
     <>
       <IntroCurtain />
       <ScrollProgress />
-      <SiteHeader />
       <main id="conteudo" className="relative">
         <Hero />
         <RibbonMarquee />
@@ -27,7 +24,6 @@ export default function Home() {
           <OrderCta />
         </div>
       </main>
-      <SiteFooter />
       <FloatingWhatsApp />
       <CursorFollower />
     </>

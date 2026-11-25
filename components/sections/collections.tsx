@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import {
   motion,
   useMotionValue,
@@ -18,7 +19,6 @@ import {
   INSTAGRAM_HANDLE,
   INSTAGRAM_URL,
   collections,
-  whatsappLink,
   type Collection,
 } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -33,7 +33,6 @@ function CollectionCard({
   progress: MotionValue<number>;
 }) {
   const imageX = useRange(progress, [0, 1], ["-7%", "7%"]);
-  const message = `Olá, Little Lulli! Me apaixonei pela coleção ${item.title} e gostaria de saber mais 🎀`;
 
   return (
     <motion.article
@@ -46,13 +45,11 @@ function CollectionCard({
       viewport={{ once: true, margin: "0px -5% -10% 0px" }}
       transition={{ duration: 1.1, delay: index * 0.08, ease: EASE_SILK }}
     >
-      <a
-        href={whatsappLink(message)}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-cursor="Encomendar"
+      <Link
+        href={`/loja/colecao/${item.slug}`}
+        data-cursor="Ver peças"
         className="block"
-        aria-label={`Encomendar a coleção ${item.title} pelo WhatsApp`}
+        aria-label={`Ver as peças da coleção ${item.title}`}
       >
         <div
           className={cn(
@@ -74,13 +71,13 @@ function CollectionCard({
             {String(index + 1).padStart(2, "0")}
           </span>
           <span className="absolute bottom-5 right-5 inline-flex translate-y-3 items-center gap-2 rounded-full bg-linen py-2 pl-4 pr-2 text-sm font-medium text-cocoa opacity-0 transition-all duration-500 ease-[var(--ease-silk)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100 max-lg:translate-y-0 max-lg:opacity-100">
-            Encomendar
+            Ver peças
             <span className="grid size-7 place-items-center rounded-full bg-cocoa text-linen">
               <ArrowUpRight className="size-3.5" />
             </span>
           </span>
         </div>
-      </a>
+      </Link>
 
       <div className="mt-6 px-1">
         <div className="flex flex-wrap gap-1.5">
@@ -174,7 +171,7 @@ export function Collections() {
             />
             <FadeIn delay={0.15} className="mt-6 max-w-md text-lg leading-relaxed text-cocoa-soft">
               Descubra a magia de cada detalhe em nossas linhas exclusivas, pensadas para a sua pequena.
-              Toque em uma coleção para encomendar direto pelo WhatsApp.
+              Toque em uma coleção para ver as peças e montar a sua sacola.
             </FadeIn>
 
             <FadeIn delay={0.25} className="mt-10 hidden items-center gap-4 text-cocoa-soft lg:flex">

@@ -67,7 +67,7 @@ export function FloatingWhatsApp() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Encomendar pelo WhatsApp"
-          className="group fixed bottom-5 right-5 z-[95] flex h-14 items-center gap-0 rounded-full bg-cocoa p-1.5 pl-1.5 text-linen shadow-[0_20px_40px_-15px_rgba(58,38,34,0.8)] md:bottom-8 md:right-8"
+          className="group fixed bottom-10 right-5 z-[95] flex h-14 items-center gap-0 rounded-full bg-cocoa p-1.5 pl-1.5 text-linen shadow-[0_20px_40px_-15px_rgba(58,38,34,0.8)] md:bottom-12 md:right-8"
           initial={{ scale: 0, opacity: 0, rotate: -40 }}
           animate={{ scale: 1, opacity: 1, rotate: 0 }}
           exit={{ scale: 0, opacity: 0, rotate: 40 }}

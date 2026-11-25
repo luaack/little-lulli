@@ -9,15 +9,13 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ShoppingBag } from "lucide-react";
 import { useRef } from "react";
 import { useIntro } from "@/components/providers";
 import { BowMark, Daisy, NeedleIcon, Rosette } from "@/components/decor";
 import { RotatingBadge } from "@/components/rotating-badge";
-import { WhatsAppIcon } from "@/components/icons";
 import { EASE_SILK, Magnetic, RevealText, StitchPath, useRange } from "@/components/motion";
-import { ScrollLink } from "@/components/scroll-link";
-import { DEFAULT_WHATSAPP_MESSAGE, whatsappLink } from "@/lib/site";
+import Link from "next/link";
 
 function useDepth(mx: MotionValue<number>, my: MotionValue<number>, depth: number) {
   const x = useTransform(mx, (v) => v * depth);
@@ -118,31 +116,29 @@ export function Hero() {
             transition={{ duration: 1, delay: 1, ease: EASE_SILK }}
           >
             <Magnetic>
-              <a
-                href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/loja"
                 className="group relative inline-flex h-16 items-center gap-3 overflow-hidden rounded-full bg-cocoa pl-7 pr-2 text-[1.02rem] font-medium text-linen shadow-[0_18px_40px_-18px_rgba(58,38,34,0.7)]"
               >
                 <span className="absolute inset-0 -translate-x-[101%] rounded-full bg-rose-deep transition-transform duration-700 ease-[var(--ease-silk)] group-hover:translate-x-0" />
-                <span className="relative">Encomendar pelo WhatsApp</span>
+                <span className="relative">Ver a loja</span>
                 <span className="relative grid size-12 place-items-center rounded-full bg-linen text-cocoa transition-transform duration-500 group-hover:scale-105">
-                  <WhatsAppIcon className="size-5" />
+                  <ShoppingBag className="size-5" />
                 </span>
-              </a>
+              </Link>
             </Magnetic>
 
-            <ScrollLink
-              href="#colecoes"
+            <Link
+              href="/personalizar"
               className="group inline-flex items-center gap-2 text-[1.02rem] font-medium text-cocoa"
             >
               <span className="relative">
-                Ver coleções
+                Personalizar uma peça
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-100 bg-cocoa/40 transition-transform duration-500 group-hover:origin-left group-hover:scale-x-0" />
                 <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-rose-deep transition-transform delay-150 duration-500 group-hover:scale-x-100" />
               </span>
               <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:rotate-45" />
-            </ScrollLink>
+            </Link>
           </motion.div>
 
           <motion.figure

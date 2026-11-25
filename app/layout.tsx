@@ -1,7 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Instrument_Sans, Mrs_Saint_Delafield } from "next/font/google";
 import { Providers } from "@/components/providers";
-import { INSTAGRAM_URL, SITE_URL, WHATSAPP_NUMBER } from "@/lib/site";
+import { BagDrawer } from "@/components/shop/bag-drawer";
+import { TestBanner } from "@/components/shop/test-banner";
+import { SiteFooter } from "@/components/sections/site-footer";
+import { SiteHeader } from "@/components/sections/site-header";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -25,12 +29,14 @@ const signature = Mrs_Saint_Delafield({
   display: "swap",
 });
 
-const title = "Little Lulli — Laços bordados à mão";
+const title = "Little Lulli · Loja (ambiente de testes)";
 const description =
   "Ateliê de laços infantis bordados à mão, ponto a ponto, com amor e cuidado. Pequenas joias para acompanhar toda a infância. Encomende pelo WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  // AMBIENTE DE TESTES: nada daqui deve aparecer em buscadores (veja também next.config.ts e app/robots.ts).
+  robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false } },
   title,
   description,
   keywords: [
@@ -62,17 +68,6 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Store",
-  name: "Little Lulli",
-  description,
-  url: SITE_URL,
-  image: `${SITE_URL}/colecao-1.jpeg`,
-  telephone: `+${WHATSAPP_NUMBER}`,
-  sameAs: [INSTAGRAM_URL],
-};
-
 // Runs before paint: skip the intro curtain if it was already seen this session.
 const introScript = `try{if(sessionStorage.getItem("lulli-intro")){document.documentElement.dataset.intro="skip"}}catch(e){}`;
 
@@ -92,21 +87,21 @@ export default function RootLayout({
         <noscript>
           <style>{`[data-intro-curtain]{display:none}`}</style>
         </noscript>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
       </head>
-      <body className="min-h-dvh bg-linen text-cocoa">
+      <body className="min-h-dvh bg-linen pb-6 text-cocoa">
         <a
           href="#conteudo"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-cocoa focus:px-5 focus:py-3 focus:text-sm focus:text-linen"
         >
           Pular para o conteúdo
         </a>
-        <Providers>{children}</Providers>
+        <Providers>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+          <BagDrawer />
+          <TestBanner />
+        </Providers>
       </body>
     </html>
   );

@@ -2,10 +2,12 @@
 
 import { motion } from "motion/react";
 import { Gift, Heart, MessageCircleHeart } from "lucide-react";
-import { BowMark, Daisy, Rosette } from "@/components/decor";
+import { BowMark, Daisy, NeedleIcon, Rosette } from "@/components/decor";
 import { RotatingBadge } from "@/components/rotating-badge";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
 import { EASE_SILK, FadeIn, Magnetic, RevealText, StitchPath } from "@/components/motion";
+import Link from "next/link";
+import { ShoppingBag } from "lucide-react";
 import { DEFAULT_WHATSAPP_MESSAGE, INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/lib/site";
 
 const steps = [
@@ -116,36 +118,40 @@ export function OrderCta() {
             segments={["Vamos encontrar o laço perfeito para a sua ", { text: "pequena?", className: "italic text-rose-deep" }]}
           />
           <FadeIn delay={0.2} className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-cocoa/75">
-            Chame a gente no WhatsApp: tiramos suas dúvidas, mostramos as opções disponíveis e cuidamos
-            de cada detalhe do seu pedido.
+            Escolha na loja ou conte o que você imagina em “Personalizar”: a gente borda, confere cada
+            detalhe e cuida do seu pedido até a entrega.
           </FadeIn>
 
           <FadeIn delay={0.3} className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Magnetic strength={0.4}>
-              <a
-                href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/loja"
                 className="group relative inline-flex h-16 items-center gap-3 overflow-hidden whitespace-nowrap rounded-full bg-cocoa pl-6 pr-2 text-base font-medium text-linen shadow-[0_24px_50px_-20px_rgba(58,38,34,0.8)] md:h-[4.25rem] md:pl-8 md:text-lg"
               >
                 <span className="absolute inset-0 -translate-x-[101%] rounded-full bg-rose-deep transition-transform duration-700 ease-[var(--ease-silk)] group-hover:translate-x-0" />
-                <span className="relative">Encomendar pelo WhatsApp</span>
+                <span className="relative">Ir para a loja</span>
                 <span className="relative grid size-12 place-items-center rounded-full bg-linen text-cocoa md:size-[3.25rem]">
                   <span className="absolute inset-0 animate-pulse-ring rounded-full bg-linen" />
-                  <WhatsAppIcon className="relative size-6" />
+                  <ShoppingBag className="relative size-6" />
                 </span>
-              </a>
+              </Link>
             </Magnetic>
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/personalizar"
               className="group inline-flex h-[4.25rem] items-center gap-3 rounded-full border border-cocoa/20 bg-linen/40 pl-6 pr-2 font-medium text-cocoa backdrop-blur transition-colors duration-500 hover:bg-linen"
             >
-              {INSTAGRAM_HANDLE}
+              Personalizar uma peça
               <span className="grid size-[3.25rem] place-items-center rounded-full bg-linen transition-transform duration-500 group-hover:rotate-12">
-                <InstagramIcon className="size-5" />
+                <NeedleIcon className="size-5" />
               </span>
+            </Link>
+          </FadeIn>
+          <FadeIn delay={0.4} className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-cocoa-soft">
+            <a href={whatsappLink(DEFAULT_WHATSAPP_MESSAGE)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 underline underline-offset-4">
+              <WhatsAppIcon className="size-4" /> Falar no WhatsApp
+            </a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 underline underline-offset-4">
+              <InstagramIcon className="size-4" /> {INSTAGRAM_HANDLE}
             </a>
           </FadeIn>
         </motion.div>

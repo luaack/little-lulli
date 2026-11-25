@@ -1,7 +1,9 @@
 "use client";
 
 import { MotionConfig } from "motion/react";
+import { usePathname } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { BagProvider } from "@/components/shop/bag-context";
 import { startSmoothScroll, stopSmoothScroll } from "@/lib/smooth-scroll";
 
 type IntroState = { done: boolean; finish: () => void };
@@ -13,7 +15,9 @@ export function useIntro() {
 }
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const [done, setDone] = useState(false);
+  const pathname = usePathname();
+  // A cortina de abertura só existe na home; nas outras páginas o cabeçalho já entra direto.
+  const [done, setDone] = useState(pathname !== "/");
   const finish = useCallback(() => setDone(true), []);
   const intro = useMemo(() => ({ done, finish }), [done, finish]);
 
@@ -33,11 +37,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
     );
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
     <MotionConfig reducedMotion="user">
-      <IntroContext.Provider value={intro}>{children}</IntroContext.Provider>
+      <IntroContext.Provider value={intro}>
+        <BagProvider>{children}</BagProvider>
+      </IntroContext.Provider>
     </MotionConfig>
   );
 }

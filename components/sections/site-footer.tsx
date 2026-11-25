@@ -1,6 +1,7 @@
 import { ArrowUp } from "lucide-react";
 import { BowMark } from "@/components/decor";
 import { InstagramIcon, WhatsAppIcon } from "@/components/icons";
+import Link from "next/link";
 import { ScrollLink } from "@/components/scroll-link";
 import { FooterWordmark } from "@/components/sections/footer-wordmark";
 import {
@@ -35,15 +36,24 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-2.5">
               {navItems.map((item) => (
                 <li key={item.id}>
-                  <ScrollLink
+                  <Link
                     href={item.href}
                     className="group inline-flex items-center gap-2 text-lg text-linen/85 transition-colors hover:text-linen"
                   >
                     <span className="h-px w-0 bg-rose transition-all duration-500 group-hover:w-5" />
                     {item.label}
-                  </ScrollLink>
+                  </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/trocas-e-prazos"
+                  className="group inline-flex items-center gap-2 text-lg text-linen/85 transition-colors hover:text-linen"
+                >
+                  <span className="h-px w-0 bg-rose transition-all duration-500 group-hover:w-5" />
+                  Trocas e prazos
+                </Link>
+              </li>
             </ul>
           </nav>
 
