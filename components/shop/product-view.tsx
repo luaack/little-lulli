@@ -7,7 +7,7 @@ import { useEffect, useId, useState } from "react";
 import { NeedleIcon } from "@/components/decor";
 import { WhatsAppIcon } from "@/components/icons";
 import { useBag } from "@/components/shop/bag-context";
-import type { Product } from "@/data/products";
+import type { Product, SetId } from "@/data/products";
 import { track } from "@/lib/analytics";
 import { MAX_QTY, addToCart, unitPrice } from "@/lib/cart";
 import { formatBRL } from "@/lib/money";
@@ -19,7 +19,7 @@ export function ProductView({ product }: { product: Product }) {
   const uid = useId();
   const [image, setImage] = useState(0);
   const [colorId, setColorId] = useState(product.colors[0]?.id);
-  const [setId, setSetId] = useState<"par" | "unidade" | undefined>(product.sets[0]?.id);
+  const [setId, setSetId] = useState<SetId | undefined>(product.sets[0]?.id);
   const [qty, setQty] = useState(1);
 
   const collection = collections.find((c) => c.slug === product.collection);

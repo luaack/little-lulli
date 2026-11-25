@@ -6,7 +6,7 @@
  * catálogo atualiza a sacola. Quando houver backend, o preço deve ser
  * recalculado no servidor também (nunca confie no preço vindo do navegador).
  */
-import { getProduct, type Product } from "@/data/products";
+import { getProduct, type Product, type SetId } from "@/data/products";
 import { createLocalStore } from "@/lib/storage/local-store";
 import type { ShippingOption } from "@/lib/shipping";
 
@@ -15,7 +15,7 @@ export type CartLine = {
   key: string;
   slug: string;
   colorId?: string;
-  setId?: "par" | "unidade";
+  setId?: SetId;
   qty: number;
 };
 
