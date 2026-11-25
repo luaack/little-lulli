@@ -6,6 +6,7 @@ export const metadata: Metadata = { title: "Contato · Little Lulli" };
 export default function ContactPage() {
   return (
     <main id="conteudo" className="pt-16 md:pt-20">
+      <h1 className="sr-only">Contato</h1>
       <OrderCta />
     </main>
   );

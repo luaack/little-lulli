@@ -25,7 +25,7 @@ export function OrderView({ id }: { id: string }) {
   if (!order) {
     return (
       <div className="rounded-[2rem] border border-dashed border-cocoa/20 p-12 text-center">
-        <p className="font-display text-3xl text-cocoa">Pedido não encontrado</p>
+        <h1 className="font-display text-3xl text-cocoa">Pedido não encontrado</h1>
         <p className="mx-auto mt-3 max-w-md text-cocoa-soft">
           Nesta versão de testes os pedidos ficam salvos só no navegador em que foram feitos.
         </p>
