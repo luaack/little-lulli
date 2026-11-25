@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BowMark } from "@/components/decor";
 import { ShippingOptions } from "@/components/shop/shipping-options";
 import { removeLine, setCartShipping, setLineQty, useCart } from "@/lib/cart";
@@ -13,13 +13,11 @@ import { deliveryWindow, useShippingQuote } from "@/lib/use-shipping";
 
 export function CartView() {
   const { state, lines, totals } = useCart();
-  const [cep, setCep] = useState("");
+  const [cepInput, setCepInput] = useState<string | null>(null);
   const { options, loading, error, quote } = useShippingQuote(lines);
-
-  // Reaproveita o último CEP digitado depois que o navegador carrega a sacola salva.
-  useEffect(() => {
-    if (state.cep) setCep((current) => current || formatCep(state.cep!));
-  }, [state.cep]);
+  // Reaproveita o último CEP digitado (vem da sacola salva) até a pessoa editar.
+  const cep = cepInput ?? formatCep(state.cep ?? "");
+  const setCep = setCepInput;
 
   if (lines.length === 0) {
     return (

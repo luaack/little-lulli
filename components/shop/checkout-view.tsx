@@ -10,7 +10,7 @@ import { cartTotals, clearCart, setCartShipping, useCart } from "@/lib/cart";
 import { formatBRL } from "@/lib/money";
 import { newOrderId, type Order } from "@/lib/orders";
 import { paymentProvider, type PaymentMethod } from "@/lib/payments";
-import { formatCep, isValidCep, onlyDigits } from "@/lib/shipping";
+import { formatCep, isValidCep } from "@/lib/shipping";
 import { orderRepository } from "@/lib/storage";
 import { deliveryWindow, useShippingQuote } from "@/lib/use-shipping";
 import { cn } from "@/lib/utils";
