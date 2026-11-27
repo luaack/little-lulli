@@ -1,7 +1,7 @@
 export const WHATSAPP_NUMBER = "5561991557493";
 export const INSTAGRAM_URL = "https://www.instagram.com/uselittlelulli";
 export const INSTAGRAM_HANDLE = "@uselittlelulli";
-export const SITE_URL = "https://little-lulli.vercel.app";
+export const SITE_URL = "https://littlelulli.com.br";
 
 export function whatsappLink(message?: string) {
   const base = `https://wa.me/${WHATSAPP_NUMBER}`;
