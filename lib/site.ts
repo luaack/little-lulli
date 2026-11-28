@@ -91,6 +91,16 @@ export const collections: Collection[] = [
     tags: ["Presilhas", "Porquinhos", "Arco-íris"],
   },
   {
+    slug: "verde-oliva",
+    title: "Verde-Oliva",
+    description:
+      "Laço e presilhas em verde-oliva, com uma bailarina de tutu branco bordada à mão.",
+    image: "/catalogo/verde-oliva.webp",
+    alt: "Mão segurando uma cartela Little Lulli com dois laços verde-oliva e duas presilhas verde-oliva bordadas com uma bailarina de tutu branco",
+    position: "50% 42%",
+    tags: ["Laço", "Presilhas", "Bailarina"],
+  },
+  {
     slug: "tiaras-encantadas",
     title: "Tiaras Encantadas",
     description:
@@ -99,6 +109,16 @@ export const collections: Collection[] = [
     alt: "Três tiaras de tecido claro bordadas à mão com princesinhas, estrelas e uma maçã",
     position: "50% 55%",
     tags: ["Tiaras", "Princesinhas", "Bordado"],
+  },
+  {
+    slug: "limoes",
+    title: "Limões",
+    description:
+      "Laço rosa com limões bordados e presilhas com estampa de limão.",
+    image: "/catalogo/limoes.webp",
+    alt: "Cartela Little Lulli com um laço rosa bordado com limões e duas presilhas, uma com um nome bordado e outra com estampa de limões",
+    position: "50% 55%",
+    tags: ["Laço", "Presilhas", "Limões"],
   },
   {
     slug: "dia-de-praia",
@@ -111,6 +131,16 @@ export const collections: Collection[] = [
     tags: ["Laço", "Xadrez", "Bordado"],
   },
   {
+    slug: "gatinhas-bordadas",
+    title: "Gatinhas Bordadas",
+    description:
+      "Presilhas brancas com o rostinho de gatinhas bordado à mão e corações de ponto.",
+    image: "/catalogo/gatinhas.webp",
+    alt: "Cartela Little Lulli com duas presilhas brancas bordadas com rostinhos de gatinhas, com duas fotos de gatas em formato de coração ao fundo",
+    position: "50% 56%",
+    tags: ["Presilhas", "Gatinhas", "Bordado"],
+  },
+  {
     slug: "cores-e-brilho",
     title: "Cores & Brilho",
     description:
@@ -119,6 +149,16 @@ export const collections: Collection[] = [
     alt: "Cartela Little Lulli com cinco presilhas de glitter, azul, branca, dourada, rosa e vermelha, apoiada em uma cadeira de madeira",
     position: "50% 50%",
     tags: ["Presilhas", "Glitter", "Cores"],
+  },
+  {
+    slug: "cachorrinho-e-coracoes",
+    title: "Cãozinho & Corações",
+    description:
+      "Presilhas rosa com um cãozinho bordado à mão, corações e acabamento em renda vermelha.",
+    image: "/catalogo/cachorrinho.webp",
+    alt: "Mão segurando uma cartela Little Lulli com duas presilhas rosa bordadas com um cãozinho de laços vermelhos e corações, ao lado da foto do cãozinho em formato de coração",
+    position: "50% 55%",
+    tags: ["Presilhas", "Cãozinho", "Par"],
   },
 ];
 
