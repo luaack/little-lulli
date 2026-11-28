@@ -23,37 +23,62 @@ export type Collection = {
   title: string;
   description: string;
   image: string;
+  alt: string;
+  /** CSS object-position for the card crop, so the product stays in frame. */
+  position: string;
   tags: string[];
-  accent: string;
 };
 
 export const collections: Collection[] = [
   {
-    slug: "jardim-encantado",
-    title: "Jardim Encantado",
+    slug: "ursinho-marfim",
+    title: "Ursinho Marfim",
     description:
-      "Laços bordados à mão com delicadeza e cores que celebram a natureza.",
-    image: "/colecao-1.jpeg",
-    tags: ["Laços", "Presilhas", "Bordado floral"],
-    accent: "var(--color-rose)",
+      "Laços e presilhas em tons de marfim, com florzinhas e um ursinho bordados à mão.",
+    image: "/catalogo/marfim.webp",
+    alt: "Cartela Little Lulli com dois laços marfim e duas presilhas bordadas, uma com flores e outra com um ursinho",
+    position: "50% 42%",
+    tags: ["Laços", "Presilhas", "Ursinho"],
   },
   {
-    slug: "lacos-de-flor",
-    title: "Laços de Flor",
+    slug: "vinho-e-renda",
+    title: "Vinho & Renda",
     description:
-      "Prendedores delicados com detalhes florais para iluminar qualquer penteado.",
-    image: "/colecao-2.jpeg",
-    tags: ["Presilhas", "Margaridas", "Par"],
-    accent: "var(--color-mint)",
+      "Presilhas bordadas com florzinhas e acabamento em renda, combinando com laços vinho.",
+    image: "/catalogo/vinho.webp",
+    alt: "Cartela Little Lulli com duas presilhas vinho bordadas com flores brancas e dois laços vinho",
+    position: "55% 72%",
+    tags: ["Laços", "Presilhas", "Renda"],
   },
   {
-    slug: "amigos-da-floresta",
-    title: "Amigos da Floresta",
+    slug: "azul-e-chocolate",
+    title: "Azul & Chocolate",
     description:
-      "Bordados lúdicos de bichinhos que trazem diversão e estilo para as pequenas.",
-    image: "/colecao-3.jpeg",
-    tags: ["Veludo", "Raposinha", "Lúdico"],
-    accent: "var(--color-gold)",
+      "Tiara, presilhas e laço em azul-bebê, com corações e florzinhas bordados.",
+    image: "/catalogo/azul-chocolate.webp",
+    alt: "Tiara azul-bebê com corações marrons bordados, três presilhas bordadas e um laço azul sobre tecido marrom",
+    position: "50% 40%",
+    tags: ["Tiara", "Presilhas", "Laço"],
+  },
+  {
+    slug: "pequena-bailarina",
+    title: "Pequena Bailarina",
+    description:
+      "Presilhas delicadas com uma bailarina e corações bordados à mão.",
+    image: "/catalogo/bailarina.webp",
+    alt: "Cartela Little Lulli com duas presilhas ovais, uma com uma bailarina rosa bordada e outra com corações rosa",
+    position: "55% 52%",
+    tags: ["Presilhas", "Bailarina", "Par"],
+  },
+  {
+    slug: "veludo-de-outono",
+    title: "Veludo de Outono",
+    description:
+      "Laços de veludo e presilhas bordadas com raposinha, ursinho e flores, em tons quentes.",
+    image: "/catalogo/veludo.webp",
+    alt: "Três cartelas Little Lulli com laços de veludo e presilhas bordadas com ursinho, raposinha e flores",
+    position: "50% 48%",
+    tags: ["Veludo", "Raposinha", "Ursinho"],
   },
 ];
 

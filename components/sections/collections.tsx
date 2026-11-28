@@ -32,7 +32,7 @@ function CollectionCard({
   index: number;
   progress: MotionValue<number>;
 }) {
-  const imageX = useRange(progress, [0, 1], ["-7%", "7%"]);
+  const imageX = useRange(progress, [0, 1], ["-3.5%", "3.5%"]);
   const message = `Olá, Little Lulli! Me apaixonei pela coleção ${item.title} e gostaria de saber mais 🎀`;
 
   return (
@@ -60,12 +60,13 @@ function CollectionCard({
             index % 2 === 0 ? "arch" : "rounded-[2.2rem]",
           )}
         >
-          <motion.div className="absolute inset-y-0 -left-[8%] w-[116%]" style={{ x: imageX }}>
+          <motion.div className="absolute inset-y-0 -left-[5%] w-[110%]" style={{ x: imageX }}>
             <Image
               src={item.image}
-              alt={`Coleção ${item.title} — ${item.description}`}
+              alt={item.alt}
               fill
               sizes="(min-width: 1024px) 30vw, 82vw"
+              style={{ objectPosition: item.position }}
               className="object-cover transition-transform duration-[1.4s] ease-[var(--ease-silk)] group-hover:scale-[1.06]"
             />
           </motion.div>
