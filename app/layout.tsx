@@ -68,7 +68,7 @@ const jsonLd = {
   name: "Little Lulli",
   description,
   url: SITE_URL,
-  image: `${SITE_URL}/colecao-1.jpeg`,
+  image: `${SITE_URL}/catalogo/veludo.webp`,
   telephone: `+${WHATSAPP_NUMBER}`,
   sameAs: [INSTAGRAM_URL],
 };

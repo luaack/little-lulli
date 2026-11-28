@@ -208,11 +208,11 @@ export function Hero() {
                 >
                   <motion.div className="absolute inset-0" style={{ scale: imageScale }}>
                   <Image
-                    src="/colecao-1.jpeg"
-                    alt="Laços e presilhas rosa bordados à mão com flores, sobre uma tábua de madeira em formato de coração"
+                    src="/catalogo/gatinhas.webp"
+                    alt="Cartela Little Lulli com duas presilhas brancas bordadas com rostinhos de gatinhas, e fotos das gatas em formato de coração"
                     fill
                     sizes="(min-width: 1024px) 34vw, 70vw"
-                    className="object-cover"
+                    className="object-cover object-[50%_55%]"
                     loading="eager"
                     fetchPriority="high"
                   />
@@ -231,11 +231,11 @@ export function Hero() {
               >
                 <div className="relative aspect-square overflow-hidden rounded-full border-[6px] border-linen shadow-[0_30px_60px_-30px_rgba(58,38,34,0.6)]">
                   <Image
-                    src="/colecao-3.jpeg"
-                    alt="Presilhas bordadas com raposinha e flores no cabelo de uma menina"
+                    src="/catalogo/tiaras-bordadas.webp"
+                    alt="Três tiaras de tecido claro bordadas à mão com princesinhas, estrelas e uma maçã"
                     fill
                     sizes="(min-width: 1024px) 18vw, 38vw"
-                    className="scale-125 object-cover object-[50%_40%]"
+                    className="object-cover object-[50%_78%]"
                     loading="eager"
                   />
                 </div>
@@ -259,11 +259,11 @@ export function Hero() {
                   <div className="mx-auto mb-2 size-3 rounded-full border border-cocoa/20 bg-linen" />
                   <div className="relative aspect-[4/5] overflow-hidden rounded-[1rem]">
                     <Image
-                      src="/colecao-2.jpeg"
-                      alt="Par de presilhas terracota bordadas com margaridas, em cartela com recorte de coração"
+                      src="/catalogo/bichinhos.webp"
+                      alt="Cartela Little Lulli com duas presilhas azul-céu bordadas com um bichinho, arco-íris, nuvens, sol e porquinhos"
                       fill
                       sizes="(min-width: 1024px) 15vw, 33vw"
-                      className="object-cover object-[50%_45%]"
+                      className="object-cover object-[50%_50%]"
                     />
                   </div>
                   <p className="font-script mt-1 text-center text-[clamp(1.1rem,2.2vw,1.7rem)] leading-none text-rose-deep">
