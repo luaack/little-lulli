@@ -31,26 +31,6 @@ export type Collection = {
 
 export const collections: Collection[] = [
   {
-    slug: "ursinho-marfim",
-    title: "Ursinho Marfim",
-    description:
-      "Laços e presilhas em tons de marfim, com florzinhas e um ursinho bordados à mão.",
-    image: "/catalogo/marfim.webp",
-    alt: "Cartela Little Lulli com dois laços marfim e duas presilhas bordadas, uma com flores e outra com um ursinho",
-    position: "50% 42%",
-    tags: ["Laços", "Presilhas", "Ursinho"],
-  },
-  {
-    slug: "vinho-e-renda",
-    title: "Vinho & Renda",
-    description:
-      "Presilhas bordadas com florzinhas e acabamento em renda, combinando com laços vinho.",
-    image: "/catalogo/vinho.webp",
-    alt: "Cartela Little Lulli com duas presilhas vinho bordadas com flores brancas e dois laços vinho",
-    position: "55% 72%",
-    tags: ["Laços", "Presilhas", "Renda"],
-  },
-  {
     slug: "azul-e-chocolate",
     title: "Azul & Chocolate",
     description:
@@ -71,6 +51,16 @@ export const collections: Collection[] = [
     tags: ["Presilhas", "Bailarina", "Par"],
   },
   {
+    slug: "xadrez-azul",
+    title: "Xadrez Azul",
+    description:
+      "Laços de xadrez azul com presilhas de florzinhas azuis bordadas à mão.",
+    image: "/catalogo/xadrez-azul.webp",
+    alt: "Cartela Little Lulli com dois laços de xadrez azul e duas presilhas bordadas com florzinhas azuis e folhas verdes",
+    position: "50% 45%",
+    tags: ["Laços", "Presilhas", "Xadrez"],
+  },
+  {
     slug: "veludo-de-outono",
     title: "Veludo de Outono",
     description:
@@ -79,6 +69,56 @@ export const collections: Collection[] = [
     alt: "Três cartelas Little Lulli com laços de veludo e presilhas bordadas com ursinho, raposinha e flores",
     position: "50% 48%",
     tags: ["Veludo", "Raposinha", "Ursinho"],
+  },
+  {
+    slug: "fadas-e-estrelas",
+    title: "Fadas & Estrelas",
+    description:
+      "Presilhas com uma fadinha e uma casinha de fada, bordadas com fios dourados.",
+    image: "/catalogo/fadas.webp",
+    alt: "Cartela Little Lulli com duas presilhas bege, uma com uma fadinha de saia lilás e outra com uma casinha de fada e estrelas douradas",
+    position: "50% 50%",
+    tags: ["Presilhas", "Fadinha", "Estrelas"],
+  },
+  {
+    slug: "bichinhos-e-arco-iris",
+    title: "Bichinhos & Arco-íris",
+    description:
+      "Presilhas azul-céu com porquinhos, nuvens, sol e arco-íris bordados à mão.",
+    image: "/catalogo/bichinhos.webp",
+    alt: "Cartela Little Lulli com duas presilhas azul-céu bordadas com um bichinho, arco-íris, nuvens, sol e três porquinhos",
+    position: "50% 50%",
+    tags: ["Presilhas", "Porquinhos", "Arco-íris"],
+  },
+  {
+    slug: "tiaras-encantadas",
+    title: "Tiaras Encantadas",
+    description:
+      "Tiaras bordadas à mão com princesinhas e detalhes de contos de fadas.",
+    image: "/catalogo/tiaras-bordadas.webp",
+    alt: "Três tiaras de tecido claro bordadas à mão com princesinhas, estrelas e uma maçã",
+    position: "50% 55%",
+    tags: ["Tiaras", "Princesinhas", "Bordado"],
+  },
+  {
+    slug: "dia-de-praia",
+    title: "Dia de Praia",
+    description:
+      "Laço de xadrez rosa com uma cena de praia e florzinhas bordadas à mão.",
+    image: "/catalogo/xadrez-rosa.webp",
+    alt: "Laço de xadrez rosa com um guarda-sol e um passarinho bordados em uma ponta e florzinhas bordadas na outra",
+    position: "50% 50%",
+    tags: ["Laço", "Xadrez", "Bordado"],
+  },
+  {
+    slug: "cores-e-brilho",
+    title: "Cores & Brilho",
+    description:
+      "Presilhas de glitter em azul, branco, dourado, rosa e vermelho.",
+    image: "/catalogo/brilho.webp",
+    alt: "Cartela Little Lulli com cinco presilhas de glitter, azul, branca, dourada, rosa e vermelha, apoiada em uma cadeira de madeira",
+    position: "50% 50%",
+    tags: ["Presilhas", "Glitter", "Cores"],
   },
 ];
 
